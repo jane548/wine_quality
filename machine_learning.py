@@ -27,7 +27,7 @@ print(wine.isnull().sum())
 # Preprocessing the data
 bins = (2, 6.5, 8)
 group_names = ['bad', 'good']
-wine['quality'] = pd.cut(wine['quality'], bins = bins, labels = group_names)
+wine['quality'] = pd.cut(wine['quality'], bins=bins, labels=group_names)
 wine['quality'].unique()
 
 # Use 'bad = 0' and 'good = 1'
@@ -45,7 +45,7 @@ sns.countplot(wine['quality'])
 plt.show()
 
 # Seperate the dataset as response variable and feature variables
-X = wine.drop('quality', axis=1) # All the features except 'quality'
+X = wine.drop('quality', axis=1)  # All the features except 'quality'
 y = wine['quality']
 
 # Train and test splitting of data
@@ -73,7 +73,7 @@ print(classification_report(y_test, predict_clf))       # Check performance
 print(confusion_matrix(y_test, predict_clf))
 
 # Neural Network
-mlpc = MLPClassifier(hidden_layer_sizes=(11,11,11), max_iter=500)
+mlpc = MLPClassifier(hidden_layer_sizes=(11,11,11), max_iter=1500)
 mlpc.fit(X_train, y_train)                              # Fit data to the model
 predict_mlpc = mlpc.predict(X_test)                     # Make prediction
 print(classification_report(y_test, predict_mlpc))      # Check performance
@@ -85,7 +85,7 @@ print(cm)
 
 # Evaluation on new wine using random forest
 wine.head(10)
-Xnew = [[7.3,0.58,0.00,0.065,15.0,21.0,0.9946,3.36,0.47,10.0]]
+Xnew = [[7.3, 0.58, 0.00, 2.0, 0.065, 15.0, 21.0, 0.9946, 3.36, 0.47, 10.0]]
 Xnew = sc.transform(Xnew)
 ynew = rfc.predict(Xnew)
 ynew
